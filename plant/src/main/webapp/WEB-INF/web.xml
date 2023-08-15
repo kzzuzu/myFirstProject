@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" metadata-complete="false" version="4.0">
+  <display-name>plant</display-name>
+  <description>這是定義plant網站應用系統的Deployment Descriptor檔(DD檔)</description>
+  <!-- 
+  <servlet>
+    <servlet-name>HelloJSP</servlet-name>
+    <jsp-file>/mod12/hello.jsp</jsp-file>
+    <init-param>
+      <param-name>welcomeString</param-name>
+      <param-value>哈囉</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloJSP</servlet-name>
+    <url-pattern>/mod12/hello.htm</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>HelloASP</servlet-name>
+    <jsp-file>/mod12/hello.jsp</jsp-file>
+    <init-param>
+      <param-name>welcomeString</param-name>
+      <param-value>你好</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloASP</servlet-name>
+    <url-pattern>/mod12/hello.asp</url-pattern>
+  </servlet-mapping>
+   -->
+  <servlet>
+    <description>這是login畫面用的驗證碼</description>
+    <servlet-name>LoginCaptchaServlet</servlet-name>
+    <servlet-class>plants.view.CaptchaServlet</servlet-class>
+    <init-param>
+      <param-name>len</param-name>
+      <param-value>4</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginCaptchaServlet</servlet-name>
+    <url-pattern>/images/captcha.jpg</url-pattern>
+  </servlet-mapping>
+ 
+  <servlet>
+    <description>這是register畫面用的驗證碼</description>
+    <servlet-name>RegisterCaptchaServlet</servlet-name>
+    <servlet-class>plants.view.CaptchaServlet</servlet-class>
+    <init-param>
+      <param-name>len</param-name>
+      <param-value>7</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterCaptchaServlet</servlet-name>
+    <url-pattern>/images/register_captcha.jpg</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+  
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/error_views/404.jsp</location>
+  </error-page>
+  
+  <security-constraint>
+        <display-name>user_constraints</display-name>
+        <web-resource-collection>
+            <web-resource-name>all</web-resource-name>
+            <description/>
+            <url-pattern>/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+ </security-constraint>
+ 
+</web-app>
